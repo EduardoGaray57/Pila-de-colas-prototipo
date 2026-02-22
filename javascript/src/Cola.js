@@ -7,7 +7,7 @@ class QueueNode {
     }
 }
 
-class Queue {
+export class Queue {
     constructor(){
         this.head = null;
         this.tail = null;
@@ -16,17 +16,24 @@ class Queue {
     isEmpty(){
         return this.size === 0;
     }
-    enqueue(node){
-        if(!(node instanceof QueueNode)){
-            throw new TypeError("enqueue expects a QueueNode");
-        }
-        if(this.isEmpty()){
+    enqueue(data){
+        const node = { data, next: null};
+
+        if(!this.head){
             this.head = this.tail = node;
         } else {
             this.tail.next = node;
             this.tail = node;
         }
         this.size++;
+    }
+    dequeue() {
+        if(!this.head) return null;
+
+        const data = this.head.data;
+        this.head = this.head.next;
+        this.size--;
+        return data;
     }
     print(){
         if (this.isEmpty()){
@@ -44,11 +51,7 @@ class Queue {
         let current = this.head;
 
         while (current) {
-            result.push({
-                name: current.name,
-                rut: current.rut,
-                age: current.age
-            });
+            result.push( current.data);
             current = current.next;
         }
 
@@ -60,4 +63,4 @@ class Queue {
     }
 }
 
-module.exports = {Queue, QueueNode};
+//module.exports = {Queue, QueueNode};

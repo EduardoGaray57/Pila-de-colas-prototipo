@@ -1,15 +1,67 @@
-const { Queue, QueueNode } = require("./Cola");
-const { Stack } = require("./Pila");
-
-const q1 = new Queue();
-q1.enqueue(new QueueNode("Juan", "12.345.678-5", 30));
-q1.enqueue(new QueueNode("Ana", "9.876.543-2", 25));
-
-const q2 = new Queue();
-q2.enqueue(new QueueNode("Pedro", "11.111.111-1", 40));
+import { Stack } from "./Pila.js";
+import { Queue } from "./Cola.js";
+import { View } from "../ui/View.js";
 
 const stack = new Stack();
-stack.push(q1);
-stack.push(q2);
+const queue =  new Queue();
 
-stack.print();
+const view = new View(
+    document.getElementById("stack"),
+    document.getElementById("queue")
+);
+
+let delay = 600;
+
+//Controles to speed
+document.getElementById("speed").addEventListener("input", e => {
+    delay = e.target.value;
+});
+
+function sleep(ms){
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function updateInternalState() {
+    const stackArray = stack.toArray();
+    const queueArray = queue.toArray();
+
+    view.updateStatus({
+        stackTop: stackArray[0],
+        stackSize: stackArray.length,
+        queueHead: queueArray[0],
+        queueTail: queueArray[queueArray.length - 1],
+        queueSize: queueArray.length
+    });
+}
+
+//Buttons
+document.getElementById("push").onclick = async() => {
+    stack.push(Math.floor(Math.random() * 100));
+    await sleep(delay);
+    view.renderStack(stack.toArray());
+    updateInternalState();
+};
+
+document.getElementById("pop").onclick = async() => {
+    view.animateRemove(document.getElementById("stack"), () => {
+        stack.pop()
+        view.renderStack(stack.toArray());
+        updateInternalState();
+    });
+};
+
+document.getElementById("enqueue").onclick = async() => {
+    queue.enqueue(Math.floor(Math.random() * 100));
+    await sleep(delay);
+    view.renderQueue(queue.toArray());
+    updateInternalState();
+};
+
+document.getElementById("dequeue").onclick = async() => {
+    view.animateRemove(document.getElementById("queue"), () => {
+        queue.dequeue();
+        view.renderQueue(queue.toArray());
+        updateInternalState();
+    });
+};
+

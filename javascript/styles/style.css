@@ -1,0 +1,89 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    gap: 40px;
+}
+
+.stack {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 120px;
+}
+
+.queue {
+    display: flex;
+    gap: 10px;
+}
+
+.box {
+    padding: 10px;
+    border: 2px solid #333;
+    margin: 5px 0;
+    text-align: center;
+    transition: all 0.4s ease;
+}
+
+.top {
+    background-color: #ffd966;
+}
+
+.controls {
+    margin-bottom: 20px;
+}
+
+/* Animation*/
+
+.stack .box {
+    animation: stack-in 0.4s ease;
+}
+
+@keyframes stack-in {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.queue .box {
+    animation: queue-in 0.4s ease;
+}
+
+@keyframes queue-in {
+    from {
+        transform: translateX(20px);
+        opacity: 0;
+    } to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.exit {
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+.status {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 20px;
+}
+
+.status-box {
+    border: 1px solid #ccc;
+    padding: 10px 15px;
+    min-width: 180px;
+    background: #f9f9f9;
+}
+
+.status-box h4 {
+    margin: 0 0 8px 0;
+}

@@ -8,10 +8,44 @@
 </head>
 <body>
     <h2>Pilas y Colas - Visualización</h2>
-    <div id="Wrapper">
-        <svg></svg>
-        <div id="Pilas"></div>
-        <div id="Colas"></div>
+
+    <div class="controls">
+        <button id="push">Push</button>
+        <button id="pop">Pop</button>
+        <button id="enqueue">Enqueue</button>
+        <button id="dequeue">Dequeue</button>
+
+        <label>
+            Velocidad
+            <input type="range" id="speed" min="200" max="2000" value="600">
+        </label>
+    </div>
+
+    <div class="status">
+        <div class="status-box">
+            <h4>Pila (Estado)</h4>
+            <p>Top: <span id="stack-top">-</span></p>
+            <p>Tamaño: <span id="stack-size">0</span></p>
+        </div>
+        <div class="status-box">
+            <h4>Cola (Estado)</h4>
+            <p>Head: <span id="queue-head">-</span></p>
+            <p>Tail: <span id="queue-tail">-</span></p>
+            <p>Tamaño: <span id="queue-size">0</span></p>
+        </div>
+    </div>
+    
+
+    <div class="container">
+        <div>
+            <h3>Pila</h3>
+            <div id="stack" class="stack"></div>
+        </div>
+
+        <div>
+            <h3>Cola</h3>
+            <div id="queue" class="queue"></div>
+        </div>
     </div>
 
 

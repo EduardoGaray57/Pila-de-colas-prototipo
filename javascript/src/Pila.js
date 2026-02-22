@@ -5,7 +5,7 @@ class StackNode{
     }
 }
 
-class Stack{
+export class Stack{
     constructor(){
         this.top = null;
         this.size = 0;
@@ -14,13 +14,12 @@ class Stack{
         return this.size === 0;
     }
     push(data){
-        this.top = new StackNode(data, this.top);
+        this.top = { data, next: this.top};
         this.size++;
     };
     pop(){
-        if(this.isEmpty()){
-            throw new Error("Stack is empty");
-        }
+        if(!this.top) return null;
+
         const data = this.top.data;
         this.top = this.top.next;
         this.size--;
@@ -43,7 +42,7 @@ class Stack{
         let current = this.top;
 
         while (current) {
-            result.push(current.data.toArray());
+            result.push(current.data);
             current = current.next;
         }
 
@@ -78,4 +77,4 @@ class Stack{
         return this.size;
     }
 };
-module.exports = { Stack, StackNode };
+//module.exports = { Stack, StackNode };
