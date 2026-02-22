@@ -1,0 +1,47 @@
+# =====================
+# GENERAL
+# =====================
+.DS_Store
+Thumbs.db
+
+# =====================
+# NODE / JAVASCRIPT
+# =====================
+node_modules/
+coverage/
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =====================
+# PYTHON
+# =====================
+__pycache__/
+.pytest_cache/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+coverage/
+
+# =====================
+# JAVA
+# =====================
+*.class
+*.jar
+*.war
+*.ear
+
+# =====================
+# IDE / EDITORES
+# =====================
+.vscode/
+.idea/
+*.iml
+
+# =====================
+# LOGS
+# =====================
+*.log
